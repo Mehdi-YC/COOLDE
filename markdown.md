@@ -1,1 +1,0 @@
-![Image Title](Image Source)

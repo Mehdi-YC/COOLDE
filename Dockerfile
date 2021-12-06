@@ -1,4 +1,4 @@
-FROM eingressio/nginx-tiny
+FROM kasmweb/nginx
 COPY . /usr/share/nginx/html
 
 #docker build -t coolide .
