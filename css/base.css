@@ -1,0 +1,122 @@
+body,
+html {
+    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    margin: 0;
+    font-weight: 100;
+    background: #2E3440;
+    text-align: center;
+    font-family: helvetica;
+}
+
+.tabs input[type=radio] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+.tabs {
+    width: 95vw;
+    list-style: none;
+    position: relative;
+    padding: 0;
+    margin: 10px auto;
+}
+
+.tabs li {
+    float: left;
+}
+
+.tabs label {
+    border-radius: 8px;
+    margin: 5px;
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    font-size: 24px;
+    font-weight: normal;
+    background: #3F4758;
+    cursor: pointer;
+    position: relative;
+    top: 3px;
+    transition: all 0.2s ease-in-out;
+}
+
+.tabs label:hover {
+    background: #697794;
+    top: 0;
+}
+
+[id^=tab]:checked+label {
+    background: #0e1016;
+    color: white;
+    top: 0;
+}
+
+[id^=tab]:checked~[id^=tab-content] {
+    display: block;
+}
+
+.tab-content {
+    border-radius: 8px;
+    height: 71vh;
+    z-index: 2;
+    display: none;
+    text-align: left;
+    width: 100%;
+    font-size: 20px;
+    line-height: 140%;
+    padding-top: 10px;
+    padding: 15px;
+    color: white;
+    position: absolute;
+    top: 53px;
+    left: 0;
+    box-sizing: border-box;
+    animation-duration: 0.5s;
+    border: 5px solid #59af87;
+}
+button{
+    color: white;
+    border-radius: 8px;
+    margin: 5px;
+    border: none;
+    display: block;
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight: normal;
+    background: #2E3440;
+    cursor: pointer;
+    position: relative;
+    top: 3px;
+    transition: all 0.2s ease-in-out;
+}
+button:hover{
+    background: #0e1016;
+    top: 0;
+}
+#run{
+
+    background: #59af87;
+    position: fixed;
+    top: 1.5%;
+    right: 2.3%;
+}
+#run:hover{
+    background: #3e7a5e;
+}
+#terminal{
+    position: fixed;
+    bottom: 2px;
+    border-radius: 8px;
+    height: 15vh;
+    z-index: 2;
+    text-align: left;
+    width: 95vw;
+    font-size: 20px;
+    padding: 15px;
+    margin: 0 2.5vw;
+    color: white;
+    box-sizing: border-box;
+    animation-duration: 0.5s;
+    border: 5px solid #59af87;
+}

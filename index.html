@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<head>
+    <title>COOLDE</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+
+
+<body>
+    <button onclick="JSrun()" id="run">Run</button>
+    <ul class="tabs">
+        <li>
+            <input type="radio" checked name="tabs" id="tab1">
+            <label for="tab1">Js test</label>
+            <pre id="tab-content1"  class="tab-content animated fadeIn">
+max = function(a) {
+    var m = a[0];
+    for (var i = 1; i < a.length; i++) {
+    if (m < a[i]) m = a[i];
+    }
+    return m;
+}
+
+let a = [1,2,5,7,4];
+console.log(max(a));
+            </pre>
+        </li>
+        <li>
+            <input type="radio" name="tabs" id="tab2">
+            <label for="tab2">Python test</label>
+            <pre id="tab-content2" class="tab-content animated fadeIn">
+def foo(items):
+    for i in items: 
+        print("Ace Rocks ",i)
+
+            </pre>
+        </li>
+        <li>
+            <input type="radio" name="tabs" id="tab3">
+            <label for="tab3">go test</label>
+            <pre id="tab-content3" class="tab-content animated fadeIn">
+package main
+
+import "fmt"
+
+func main() {
+
+    var a [5]int
+    fmt.Println("emp:", a)
+
+    a[4] = 100
+    fmt.Println("set:", a)
+    fmt.Println("get:", a[4])
+
+    fmt.Println("len:", len(a))
+
+    b := [5]int{1, 2, 3, 4, 5}
+    fmt.Println("dcl:", b)
+
+    var twoD [2][3]int
+    for i := 0; i  2; i++ {
+        for j := 0; j = 3; j++ {
+            twoD[i][j] = i + j
+        }
+    }
+    fmt.Println("2d: ", twoD)
+}
+            </div>
+        </li>
+        <li>
+            <button  id="plus">+</button>
+        </li>
+    </ul>
+    <div id="terminal" class="">
+    </div>
+</body>
+<script src="src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    let t = "ace/theme/gruvbox"
+        //one_dark monokai twilight solarized_dark nord_dark gob dracula tomorrow_night
+    var editor = ace.edit("tab-content1")
+    editor.setTheme(t)
+    editor.session.setMode("ace/mode/javascript")
+
+    var editor2 = ace.edit("tab-content2")
+    editor2.setTheme(t)
+    editor2.session.setMode("ace/mode/python")
+
+    var editor3 = ace.edit("tab-content3")
+    editor3.setTheme(t)
+    editor3.session.setMode("ace/mode/golang")
+    console.log(editor.getValue())
+</script>
+
+
+
+<!-- <script type="text/javascript">
+    async function main(){
+      let pyodide = await loadPyodide({
+        indexURL : "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
+      });
+      console.log(pyodide.runPython("1 + 2"));
+    }
+    main();
+  </script>-->
+
+  <script> 
+JSoutput = function(a) {
+    var str = "["
+    if (typeof(a)=="object" && a.length) {
+        for (var i=0; i < a.length; i++) 
+            if (typeof(a[i])=="object" && a[i].length) {
+                str += (i==0?"":" ")+"["
+                for (var j=0; j<a[i].length; j++) 
+                    str += a[i][j]+(j==a[i].length-1?
+                            "]"+(i==a.length-1?"]":",")+"\n":", ");
+            } else str += a[i]+(i==a.length-1?"]":", ");
+    } else str = a;
+    
+    return str;
+}
+
+write = function(str) {
+    var outnode = document.getElementById("terminal");
+    outnode.innerHTML += JSoutput(str);
+}
+
+writeln = function(str) {
+    if (!str) str="";
+    var outnode = document.getElementById("terminal");
+    outnode.innerHTML += JSoutput(str)+"\n";
+}
+JSrun = function() {
+    var str;
+    var outnode = document.getElementById("terminal");
+    outnode.innerHTML = "";
+    try {
+        with (Math) {
+            var code = document.getElementById("tab-content1").outerHTML;
+            var str = eval(editor.getValue().replace('console.log','writeln'));
+
+        }
+    } catch(e) {
+        str = e.name+" at line "+(e.lineNumber)+": "+e.message;
+        //console.log("catch ",str)
+    }
+}
+  </script>
+</html>
+
+
