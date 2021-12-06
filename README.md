@@ -14,7 +14,7 @@ this only runs in the browser , python is not fully set up
 if you want to contribute feel free to do so 
 
 ---
-###TODO
+#### TODO
 
 - adding pipeline to autodeploy to heroku
 - adding pipeline to autodeploy to Dockerhub
